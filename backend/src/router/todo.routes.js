@@ -1,14 +1,15 @@
 import { Router } from 'express';
+import todoController from '../controllers/todo.controller'
 
 const router = Router();
 
 //listar tarefa
-router.get('/',(req, res)=>{});
+router.get('/',todoController.gerAllTodo);
 //criar tarefa
-router.post('/',(req, res)=>{});
+router.post('/',todoController.createTodo);
 //atualizar toda tarefa
-router.put('/:id',(req, res)=>{});
+router.put('/:id',todoController.updateTodo);
 //editar tarefa
-router.patch('/:id',(req, res)=>{});
+router.patch('/:id',todoController.toggleTodo);
 //eliminar tarefa
-router.delete('/:id',(req, res)=>{});
+router.delete('/:id',todoController.deleteTodo);
