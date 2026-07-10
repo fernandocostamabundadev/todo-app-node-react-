@@ -1,15 +1,17 @@
 import { Router } from 'express';
 import todoController from '../controllers/todo.controller'
+import { validation } from '../middlewares/validation.middlewares'
+import { createTodoSchema, updateTodoSchema, idParamSchema} from '../validations/todo.validation';
 
 const router = Router();
 
 //listar tarefa
-router.get('/',todoController.gerAllTodo);
+router.get('/',createTodoSchema, todoController.gerAllTodo);
 //criar tarefa
-router.post('/',todoController.createTodo);
+router.post('/',updateTodoSchema, todoController.createTodo);
 //atualizar toda tarefa
-router.put('/:id',todoController.updateTodo);
+router.put('/:id',idParamSchema, todoController.updateTodo);
 //editar tarefa
-router.patch('/:id',todoController.toggleTodo);
+router.patch('/:id',idParamSchema, todoController.toggleTodo);
 //eliminar tarefa
-router.delete('/:id',todoController.deleteTodo);
+router.delete('/:id',idParamSchema, todoController.deleteTodo);
