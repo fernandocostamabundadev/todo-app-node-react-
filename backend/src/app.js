@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 
 //Importar as rotas
 import todoRoutes from './router/todo.routes.js';
+import swagerRoutes from './router/swagger.routes.js'
 
 dotenv.config();
 
@@ -20,5 +21,6 @@ app.get('/',(req, res)=>{
 
 //rota do todo
 app.use('/api/todo', todoRoutes);
+app.use('./api/docs', swagerRoutes);
 
 export default app;
