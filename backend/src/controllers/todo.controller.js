@@ -1,17 +1,17 @@
-import {todoService} from '../services/todo.service';
+import {todoService} from '../services/todo.service.js';
 
-exports.gerAllTodos = (req, res, next)=>{
+export const getAllTodos = (req, res, next)=>{
   try{
-    const todo = todoService.getAllTodos;
+    const todo = todoService.getAllTodos();
     res.json({
-      status:'sucess',
-      data: todos,
+      status:'success',
+      data: todo,
     });
   }catch(error){
     next(error);
   }
 };
-exports.createTodo= (req, res, next)=>{
+export const createTodo= (req, res, next)=>{
   try {
     const { title, completed } = req.body;
     if (!title) {
@@ -29,7 +29,7 @@ exports.createTodo= (req, res, next)=>{
     next(error);
   }
 };
-exports.updateTodo= (req, res, next)=>{
+export const updateTodo= (req, res, next)=>{
   try {
     const id = parseInt(req.params.id);
     const { title, completed } = req.body;
@@ -42,7 +42,7 @@ exports.updateTodo= (req, res, next)=>{
     next(error);
   }
 };
-exports.toggleTodo= (req, res, next)=>{
+export const toggleTodo= (req, res, next)=>{
   try {
     const id = parseInt(req.params.id);
     const toggled = todoService.toggleTodo(id);
@@ -54,7 +54,7 @@ exports.toggleTodo= (req, res, next)=>{
     next(error);
   }
 };
-exports.deleteTodo= (req, res, next)=>{
+export const deleteTodo= (req, res, next)=>{
   try {
     const id = parseInt(req.params.id);
     todoService.deleteTodo(id);

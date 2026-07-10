@@ -1,8 +1,8 @@
-let todo =[
-  {id:1, title:'estudar html5', completred:true},
-  {id:2, title:'estudar css3', completred:false},
-  {id:3, title:'estudar react.js', completred:true},
-  {id:4, title:'estudar node.js', completred:false}
+let todos =[
+  {id:1, title:'estudar html5', completed:true},
+  {id:2, title:'estudar css3', completed:false},
+  {id:3, title:'estudar react.js', completed:true},
+  {id:4, title:'estudar node.js', completed:false}
 ]
 
 let nextId = 5;

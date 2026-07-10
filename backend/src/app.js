@@ -3,7 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 
 //Importar as rotas
-import todoRoutes from './router/todo.routes';
+import todoRoutes from './router/todo.routes.js';
 
 dotenv.config();
 

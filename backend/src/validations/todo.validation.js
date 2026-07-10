@@ -4,9 +4,9 @@ import { z } from 'zod';
 export const createTodoSchema = z.object({
   body: z.object({
   title: z.string().min(1, 'Título é obrigatório'),
-  completed: z.boolean().optiona(),
+  completed: z.boolean().optional(),
   })
-}),
+});
 //valida atualizacao da tarefa
 export const updateTodoSchema = z.object({
   body: z.object({
