@@ -1,7 +1,7 @@
 {
   "name": "backend-todo-api",
   "version": "1.0.0",
-  "description":"API RESTful para gerenciamento de tarefas (To-Do List) com autenticação JWT, PostgreSQL, Prisma ORM e arquitetura em camadas.",
+  "description": "API RESTful para gerenciamento de tarefas (To-Do List) com autenticação JWT, PostgreSQL, Prisma ORM e arquitetura em camadas.",
   "keywords": [
     "todo",
     "api",
@@ -18,5 +18,13 @@
     "start": "node src/app.js",
     "dev": "nodemon src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
   }
 }
