@@ -11,6 +11,18 @@ export const getAllTodos = (req, res, next)=>{
     next(error);
   }
 };
+export const getTodoById = (req, res, next) => {
+  try {
+    const id = parseInt(req.params.id);
+    const todo = todoService.getTodoById(id);
+    res.json({
+      status: 'success',
+      data: todo,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 export const createTodo= (req, res, next)=>{
   try {
     const { title, completed } = req.body;

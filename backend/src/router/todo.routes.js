@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import {
   getAllTodos,
+  getTodoById,
   createTodo,
   updateTodo,
   toggleTodo,
@@ -105,7 +106,8 @@ router.post('/', validate(createTodoSchema), createTodo);
  *       404:
  *         description: Tarefa não encontrada
  */
-router.get('/:id', getAllTodos);
+
+router.get('/:id', getTodoById);
 
 /**
  * @swagger

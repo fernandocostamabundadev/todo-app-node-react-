@@ -12,6 +12,16 @@ export const todoService={
   getAllTodos:()=>{
     return todos;
   },
+  //BUSCAR POR ID
+  getTodoById: (id) => {
+    const todo = todos.find((item) => item.id === id);
+    if (!todo) {
+      const error = new Error('Tarefa não encontrada');
+      error.status = 404;
+      throw error;
+    }
+    return todo;
+  },
   //Criar tarefa
   createTodo:(data)=>{
     const newTodo ={
