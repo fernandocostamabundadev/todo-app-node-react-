@@ -9,9 +9,20 @@ export const validate = (schema) => {
         query: req.query
       })
 
-      req.body = validated.body || req.body;
-      req.params = validated.params || req.params;
-      req.query = validated.query || req.query;
+      // Body é editável
+      if (validated.body) {
+        req.body = validated.body;
+      }
+
+      // Params é editável
+      if (validated.params) {
+        req.params = validated.params;
+      }
+
+      // Query NÃO é editável - guardamos em outro lugar
+      if (validated.query) {
+        req.validatedQuery = validated.query;
+      }
 
       next();
     }catch(error){
