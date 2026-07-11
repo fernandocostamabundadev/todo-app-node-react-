@@ -1,26 +1,25 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import swaggerUi from 'swagger-ui-express';
+import { swaggerSpec } from './config/swagger.config.js';
 
-//Importar as rotas
 import todoRoutes from './router/todo.routes.js';
-import swagerRoutes from './router/swagger.routes.js'
 
 dotenv.config();
 
 const app = express();
 
-//Middlewares
 app.use(cors());
 app.use(express.json());
 
-//rota teste
-app.get('/',(req, res)=>{
-  res.status(200).json({message:'ok'})
-})
+// 📚 Swagger UI
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-//rota do todo
+app.get('/', (req, res) => {
+  res.status(200).json({ message: 'ok' });
+});
+
 app.use('/api/todo', todoRoutes);
-app.use('./api/docs', swagerRoutes);
 
 export default app;
