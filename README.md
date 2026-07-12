@@ -151,8 +151,8 @@ MIT
 - Fernando Costa Mabunda (FC.Mabunda)
 
 - 📧 Email: f0083357@email.com
-- 💼 GitHub: seu-usuario
-- 🔗 LinkedIn: seu-linkedin
+- 💼 GitHub: https://github.com/fernandocostamabundadev
+- 🔗 LinkedIn: https://www.linkedin.com/in/fernando-mabunda/
 
 ## Agradecimentos
 
