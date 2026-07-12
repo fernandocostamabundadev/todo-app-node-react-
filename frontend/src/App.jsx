@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import TodoItem from "./components/TodoItem";
 
-const apiUrl = "http://localhost:3001api/todos";
+const apiUrl = "http://localhost:3001/api/todo";
 
 const emptyForm = {
   task: "",
