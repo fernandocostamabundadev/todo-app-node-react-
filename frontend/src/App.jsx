@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import TodoItem from "./components/TodoItem";
 
-// ✅ CORRIGIDO: /api/todo (sem "s")
-const apiUrl = "http://localhost:3001/api/todo";
+const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:3001/api/todo";
 
 const emptyForm = {
   task: "",
