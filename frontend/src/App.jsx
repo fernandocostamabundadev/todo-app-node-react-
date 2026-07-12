@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import TodoItem from "./components/TodoItem";
 
+// ✅ CORRIGIDO: /api/todo (sem "s")
 const apiUrl = "http://localhost:3001/api/todo";
 
 const emptyForm = {
@@ -23,7 +24,8 @@ function App() {
     try {
       const response = await fetch(apiUrl);
       const data = await response.json();
-      setTodos(data);
+      // A API retorna { status: "success", data: [...] }
+      setTodos(data.data || []);
     } catch (err) {
       setError("Não foi possível carregar as tarefas.");
     } finally {
@@ -41,7 +43,8 @@ function App() {
     });
 
     if (!response.ok) {
-      throw new Error("Falha ao salvar tarefa.");
+      const errorData = await response.json();
+      throw new Error(errorData.message || "Falha ao salvar tarefa.");
     }
 
     return response.json();
@@ -60,15 +63,15 @@ function App() {
     try {
       const result = await saveTodo({
         title: task,
-        description: "",
+        completed: false,
       });
 
       if (editingId) {
         setTodos((prev) =>
-          prev.map((item) => (item.id === result.id ? result : item)),
+          prev.map((item) => (item.id === result.data.id ? result.data : item))
         );
       } else {
-        setTodos((prev) => [...prev, result]);
+        setTodos((prev) => [...prev, result.data]);
       }
 
       setForm(emptyForm);
@@ -110,9 +113,9 @@ function App() {
       if (!response.ok) {
         throw new Error("Falha ao atualizar status.");
       }
-      const updated = await response.json();
+      const result = await response.json();
       setTodos((prev) =>
-        prev.map((todo) => (todo.id === updated.id ? updated : todo)),
+        prev.map((todo) => (todo.id === result.data.id ? result.data : todo))
       );
     } catch (err) {
       setError(err.message);

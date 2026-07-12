@@ -1,13 +1,13 @@
-import {z} from 'zod';
+import { z } from 'zod';
 
 export const validate = (schema) => {
   return (req, res, next) => {
-    try{
+    try {
       const validated = schema.parse({
-        body:req.body,
+        body: req.body,
         params: req.params,
-        query: req.query
-      })
+        query: req.query,
+      });
 
       // Body é editável
       if (validated.body) {
@@ -25,13 +25,14 @@ export const validate = (schema) => {
       }
 
       next();
-    }catch(error){
-      if(error instanceof z.ZodError){
-
-        const messages = error.errors.map((e) => ({
+    } catch (error) {
+      // ✅ VERIFICA SE error É UMA INSTÂNCIA DE ZodError
+      if (error instanceof z.ZodError) {
+        // ✅ VERIFICA SE error.errors EXISTE
+        const messages = error.errors?.map((e) => ({
           field: e.path.join('.'),
           message: e.message,
-        }));
+        })) || [{ field: 'unknown', message: 'Erro de validação' }];
 
         return res.status(400).json({
           status: 'error',
@@ -40,7 +41,8 @@ export const validate = (schema) => {
         });
       }
 
+      // Se não for erro do Zod, passa para o próximo middleware
       next(error);
     }
-  }
-}
+  };
+};
