@@ -10,7 +10,14 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors());
+const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
+
+app.use(cors({
+  origin: frontendUrl,
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+}));
 app.use(express.json());
 
 // 📚 Swagger UI
