@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import TodoItem from "./components/TodoItem";
-
-const apiUrl = "http://localhost:3001/api/todos";
+import TodoItem from "./src/components/TodoItem.jsx";
+import { apiUrl } from "axios";
 
 const emptyForm = {
   task: "",
